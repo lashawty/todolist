@@ -8,7 +8,6 @@ const filterOption = document.querySelector('.filter-todo');
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
-//functions
 
 function addTodo(event) {
     event.preventDefault();
@@ -50,29 +49,33 @@ function deleteCheck(e) {
         const todo = item.parentElement;
         todo.classList.toggle("completed");
     }
-    console.log(deleteCheck);
+    
 }
-
 function filterTodo(e) {
     const todos = todoList.childNodes;
-    console.log(todos);
-    todos.forEach(function(todo) {
-        switch (e.target.value) {
-            case "all":
-                todo.style.display = "flex" ;
-                break;
-            case "completed":
-                if (todo.classList.contains("completed")) {
-                    todo.style.display = "flex";
-                } else {
-                    todo.style.display = "none";
-                }break;
-            case "uncompleted":
-                if (!todo.classList.contains("uncompleted")){
-                        todo.style.display = "flex";
+    todos.forEach(function (todo) { 
+        const mStyle = todo.style;  
+        if(mStyle != undefined && mStyle != null){
+            switch (e.target.value) {
+                case "all":
+                    mStyle.display = "flex";
+                    break;
+                case "completed":
+                    if (todo.classList.contains('completed')) {
+                        mStyle.display = 'flex';
                     } else {
-                        todo.style.display = "none";
-                    }break;
+                        mStyle.display = "none";
+                    }
+                    break;
+                case "uncompleted":
+                    if (todo.classList.contains('completed')){
+                        mStyle.display = 'none';
+                    }
+                    else{
+                        mStyle.display = "flex";
+                    }
+                    break;
+            }
         }
-    });
+    })
 }
