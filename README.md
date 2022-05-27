@@ -1,2 +1,2 @@
 # todolist
-to do list practice
+https://lashawty.github.io/todolist/
